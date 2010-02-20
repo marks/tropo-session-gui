@@ -1,15 +1,17 @@
-%w(open-uri rexml/document yaml cgi).each {|lib| require lib}
-CONFIG = YAML::load(File.read('config.yaml'))
-call_options = {  'to' => "12021231234", 
-                  'network' => "sms",
+%w(yaml open-uri rexml/document cgi helpers.rb).each {|lib| require lib}
+config = YAML::load(File.read('config.yaml'))
+
+call_options = {  'to' => "SkramX", 
+                  'network' => "aim",
                   'message' => "A Generic Message."    }  
-show_fields = call_options.keys # A.K.A. ["to","network","message"]
+show_fields = call_options.keys
 user_set_fields = Hash.new
+
 Shoes.app :title => "Mark's Tropo Session API Script", :width => 320, :height => 500 do
   background "background.jpg"
   @content = stack :margin => 40, :margin_top => 15 do
   subtitle "Tropo Initiate", :margin => 5
-  @notifications = stack do; end
+  @notifications = stack do end
   @field_stacks = Hash.new
   stack do
     show_fields.each do |field|
@@ -24,25 +26,14 @@ Shoes.app :title => "Mark's Tropo Session API Script", :width => 320, :height =>
     @buttons = flow :margin => 5 do
       button "Go!" do
             show_fields.each {|field| call_options[field] = user_set_fields[field].text}
-            if call_options['network'].upcase == 'VOICE'
-              call_options['token'] = CONFIG['tropo']['session']['voice']
-            else # text
-              call_options['token'] = CONFIG['tropo']['session']['text']
-              call_options['channel'] = 'TEXT'
-            end
-            params = "?action=create"
-            call_options.each {|key,value| params << "&"+key+"="+CGI.escape(value.to_s)}
-            alert(CONFIG['tropo']['session']['url']+params) # uncomment this whole line if you want to see that 'URL
-            response = open(CONFIG['tropo']['session']['url'] + params).read
-            xml = REXML::Document.new(response) 
-            alert(xml)
-            if xml.root.get_text("success") == true
+            initiate_return = new_session(call_options,config)
+            if initiate_return#xml.root.get_text("success") == true
               @notifications.prepend do
                 stack :margin => 10 do
                   background "#d0f0c0"
                   border "#008000", :strokewidth => 4
                   para strong("Success."),"\nSession queued via Tropo", :margin => 6
-                  inscription em("click to dismiss notifications"), :align => 'center'
+                  inscription em("click to dismiss all notifications"), :align => 'center'
                   click do; @notifications.clear; end
                 end
               end
@@ -52,7 +43,7 @@ Shoes.app :title => "Mark's Tropo Session API Script", :width => 320, :height =>
                   background "#FFC0CB"
                   border "#C80815", :strokewidth => 4
                   para strong("Failed to place call."),"\n(Tropo Session API Error)\nReason: \"#{xml.root.get_text("reason")}\"", :margin => 6
-                  inscription em("click to dismiss notifications"), :align => 'center'
+                  inscription em("click to dismiss all notifications"), :align => 'center'
                   click do; @notifications.clear; end
                 end
               end
@@ -66,3 +57,4 @@ Shoes.app :title => "Mark's Tropo Session API Script", :width => 320, :height =>
   end 
   end
 end
+
