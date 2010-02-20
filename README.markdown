@@ -1,11 +1,9 @@
 Tropo Session API GUI
 =====================
 Built with Ruby, Shoes, and the great API at Tropo
---------------------------------------------------
-
-
 
 Don't forget your _config.yaml_ !
+---------------------------------
 	---
 	tropo:
 	  session:
