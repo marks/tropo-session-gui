@@ -4,7 +4,7 @@ Built with Ruby, Shoes, and the great API at Tropo
 
 Screenshot
 ----------
-![GUI Screenshot](screenshot.jpg)
+![GUI Screenshot](./screenshot.jpg)
 
 Don't forget your _config.yaml_ !
 ---------------------------------
