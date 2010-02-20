@@ -14,3 +14,7 @@ Don't forget your _config.yaml_ !
 	    url: http://api.tropo.com/1.0/sessions
 	    voice: YOUR_VOICE_TOKEN
 	    text: YOUR_MESSAGING_TOKEN
+	
+TODO
+----
+* Allow formatted phone numbers (strip non-numeric digits)
