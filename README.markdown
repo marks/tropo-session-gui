@@ -18,3 +18,5 @@ Don't forget your _config.yaml_ !
 TODO
 ----
 * Allow formatted phone numbers (strip non-numeric digits)
+* Mass actions by CSV
+		* and/or some type of queue you can add/remove items from, then execute.
