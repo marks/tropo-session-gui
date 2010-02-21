@@ -2,7 +2,7 @@
 
 if $action
   session_options = {:channel => $channel, :network => $network}
-  call $to, session_options
+  call $to.gsub(/[^\d]/,""), session_options
   say $message
   hangup
 else

@@ -18,7 +18,7 @@
   
   def read_csv(fields,data)
     rows = []
-    Excelsior::Reader.rows(data) do |row| ## Excelsior::Reader.rows(File.open('a_csv_file.csv', 'rb')) do |row|
+    Excelsior::Reader.rows(data) do |row|
       rows << Hash[*fields.zip(row).flatten]
     end
     return rows
