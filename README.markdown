@@ -10,6 +10,7 @@ Screenshots
 ![GUI Screenshot](http://i49.tinypic.com/301d9fs.jpg)
 
 **Sinatra Web Service**
+
 ![Web Service Screenshot](http://i50.tinypic.com/5nu2r7.png)
 
 **(CSV parser screenshot coming soon... maybe)**
