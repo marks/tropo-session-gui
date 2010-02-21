@@ -3,3 +3,9 @@
 
 ## Privacy
 config.yaml
+
+## Builds - ignore, for now
+*.shy
+*.dmg
+*.bin
+*.exe
