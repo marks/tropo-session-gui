@@ -1,5 +1,5 @@
 # This would be a class but Shoes is picky!
-%w(rubygems open-uri rexml/document cgi).each {|lib| require lib}
+%w(rubygems open-uri rexml/document cgi excelsior).each {|lib| require lib}
 
   def new_session(call_options,config)
     if call_options['network'].upcase == 'VOICE'
@@ -13,5 +13,13 @@
     call_options.each {|key,value| params_string << "&"+key+"="+CGI.escape(value.to_s)}
     response = open(config['tropo']['session']['url'] + params_string).read
     xml = REXML::Document.new(response) 
-    return xml.root.get_text("success") # => true or false
+    return xml.root.get_text("success").to_s # => true or false
+  end
+  
+  def read_csv(fields,data)
+    rows = []
+    Excelsior::Reader.rows(data) do |row| ## Excelsior::Reader.rows(File.open('a_csv_file.csv', 'rb')) do |row|
+      rows << Hash[*fields.zip(row).flatten]
+    end
+    return rows
   end
