@@ -19,7 +19,7 @@ Shoes.app :title => "Mark's Tropo Session API Script", :width => 320, :height =>
         para field, :margin_bottom => 0, :underline => 'single'
         click do; @field_stacks[field].toggle; end
         @field_stacks[field] = stack :margin => 0 do
-          user_set_fields[field] = edit_line :text => call_options.values_at(field)
+          user_set_fields[field] = edit_line :text => call_options.values_at(field), :width => 210
         end
       end
     end
@@ -49,9 +49,15 @@ Shoes.app :title => "Mark's Tropo Session API Script", :width => 320, :height =>
               end
           end
       end
-      button "Tips and Tricks" do
+      button " Tips and Tricks " do
         alert "- You can click underlined text to toggle its content\r   view (i.e. field names, notifications)
              \n- For more information, contact @Skram at\r   mark@marksilver.net or \'SkramX\' on Freenode IRC"
+      end
+      button "Load CSV [to,network,message]", :width => 225 do
+        alert("Sorry, you can't parse CSVs with this Shoes app yet.")
+        alert("After you click OK, you'll need to select a file on your hard disk that is a text file with the same format as http://PROJECT_GITHUB_URL/sample.csv")        
+        csv_file = File.read(ask_open_file)
+        alert(csv_file)
       end
     end
   end 
