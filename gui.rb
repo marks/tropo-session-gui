@@ -27,7 +27,7 @@ Shoes.app :title => "Mark's Tropo Session API Script", :width => 320, :height =>
       button "Go!" do
             show_fields.each {|field| call_options[field] = user_set_fields[field].text}
             initiate_return = new_session(call_options,config)
-            if initiate_return#xml.root.get_text("success") == true
+            if initiate_return
               @notifications.prepend do
                 stack :margin => 10 do
                   background "#d0f0c0"

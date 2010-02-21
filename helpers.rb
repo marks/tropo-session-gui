@@ -1,5 +1,5 @@
 # This would be a class but Shoes is picky!
-class TropoSession
+
   def new_session(call_options,config)
     if call_options['network'].upcase == 'VOICE'
       call_options['token'] = config['tropo']['session']['voice']
@@ -14,4 +14,3 @@ class TropoSession
     xml = REXML::Document.new(response) 
     return xml.root.get_text("success") # => true or false
   end
-end
