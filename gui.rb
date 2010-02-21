@@ -1,4 +1,4 @@
-%w(yaml open-uri rexml/document cgi helpers.rb).each {|lib| require lib}
+%w(yaml helpers.rb).each {|lib| require lib}
 config = YAML::load(File.read('config.yaml'))
 
 call_options = {  'to' => "SkramX", 
