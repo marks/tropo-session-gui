@@ -1,5 +1,5 @@
 # This would be a class but Shoes is picky!
-%w(rubygems open-uri rexml/document cgi excelsior).each {|lib| require lib}
+%w(open-uri rexml/document cgi).each {|lib| require lib}
 
   def new_session(call_options,config)
     if call_options['network'].upcase == 'VOICE'

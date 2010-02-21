@@ -1,6 +1,5 @@
-%w(yaml helpers.rb excelsior).each {|lib| require lib}
+%w(rubygems yaml helpers.rb excelsior).each {|lib| require lib}
 config = YAML::load(File.read('config.yaml'))
-
 
 fields = ["to","network","message"]
 # Sources allowed: CSV string or file
